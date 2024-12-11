@@ -476,6 +476,10 @@ defmodule GRPC.Stub do
     # Map.new is used so we can keep the last value
     # passed for a given key
     opts
+    |> Enum.filter(fn
+      {_, _} -> true  # Keep only tuples
+      _ -> false      # Filter out anything that is not a tuple
+    end)
     |> Map.new(fn
       {:deadline, deadline} ->
         {:timeout, GRPC.TimeUtils.to_relative(deadline)}
