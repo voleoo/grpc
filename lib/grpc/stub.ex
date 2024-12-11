@@ -472,6 +472,7 @@ defmodule GRPC.Stub do
     :return_headers
   ]
   defp parse_req_opts(opts) when is_list(opts) do
+    IO.puts(inspect(opts))
     # Map.new is used so we can keep the last value
     # passed for a given key
     opts
